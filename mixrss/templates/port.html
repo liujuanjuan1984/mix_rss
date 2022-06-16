@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block body %}
+<section class="header">
+    <h4 class="title">Connect Quorum Full Node</h4>
+</section>
+<section class=" container">
+    {% if form.errors %}
+    <div class="has-error"> Ooopps.Something went wrong.</div>
+    {% endif %}
+    <form action="{{url_for('add_quorum_port')}}" method=post>
+        {{ form.csrf_token }} {{ form.hidden_tag() }}
+        <div>{{form.port(placeholder="51194", value="", maxlength=6)}}
+        </div>
+        <div>{{form.submit(class="button button-primary", value="Commit")}}
+        </div>
+
+    </form>
+    <div class="container">
+        <div>
+            <p>为了连接您的 quorum 全节点，请输入端口号。</p>
+            <p>在您已经启动的 QUORUM 应用的右上角，依次点击“节点与网络…” >> “节点参数” >> “端口”。它是一串数字，一般由 4 至 5 位个数字组成。比如：51194</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
